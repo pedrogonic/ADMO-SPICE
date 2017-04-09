@@ -1,0 +1,4 @@
+comentario
+IP 0 1 PULSE 1 5 0.4 0.1 0.1 0.4 1 4
+R1 1 0 1
+.TRAN 5 0.01 ADMO1 1 UIC

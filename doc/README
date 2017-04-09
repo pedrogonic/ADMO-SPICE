@@ -1,0 +1,48 @@
+Circuit Analyzer program developed by Pedro Goni Coelho and Leonardo Carvalho for the Electric Circuits II course run by prof. Antonio Carlos Moreirao de Queiroz from Universidade Federal do Rio de Janeiro.
+The analysis is done by the Adams-Moulton method for finding numerical solutions.
+
+1)Use:
+	a)Unix: bin/admo "input-file"
+
+	b)Windows: bin\admo.exe "input-file"
+
+2)Input:
+	The input-file must be a .net file that contains the description of the circuit to be analyzed.
+
+	a)Structure:
+		The first line of the .net file is skipped by the program. It usually contains the number of nodes in the circuit.
+		Next comes all the components.
+	
+		a1)Implemented Components:
+			Resistor: R<name> <node1> <node2> <R>
+			Non-Linear Resistor: N<name> <node1> <node2> <four pairs of values vi ji>
+			Voltage Controlled Switch: $<name> <node+> <node-> <ctrlnode+> <ctrlnode-> <gon> <goff> <vref>
+			Inductor: L<name> <node1> <node2> <L> [IC=<initial current>]
+			Capacitor: C<name> <node1> <node2> <C> [IC=<initial voltage>]
+			Voltage Amplifier: E<name> <nodeV+> <nodeV-> <nodev+> <nodev-> <Av> 
+			Current Amplifier: F<name> <nodeI+> <nodeI-> <nodei+> <nodei-> <Ai> 
+			Transconductance Amplifier: G<name> <nodeI+> <nodeI-> <nodev+> <ndev-> <Gm>
+			Transimpedance Amplifier: H<name> <nodeV+> <nodeV-> <nodei+> <nodei-> <Rm>
+			Current Source: I<name> <node+> <node-> <Parameters>
+			Voltage Source: V<name> <node+> <node-> <Parameters>
+			Ideal Operational Amplifier: O<name> <outnode+> <outnode-> <innode+> <innode-> 
+			Comment: *<comment>
+
+
+			Parameters between [] are optional.
+			The sources parameters are:
+			
+			DC <value>
+			SIN <DC> <amplitude> <frequency in Hz> <time delay> <damping> <phase delay in degrees> <number of full cycles>
+			PULSE <amplitude 1> <amplitude 2> <time delay> <uptime> <downtime> <time on> <total period> <number of full cycles>
+
+		a2)Analysis Parameters:
+			.TRAN <final time> <step> ADMO<n> <inner steps> UIC
+
+			The n parameter is the AdamsMoulton order applied to the analysis. Orders 1 through 4 have been implemented.
+			The order #1 is the Backwards Euler method and the order #2 is the Trapezoidal analysis.
+
+3)Output:
+	a)Unix: the output will be a csv file located at /output
+
+	b)Windows: the output will be a tab file (values separated with spaces) located at \output
